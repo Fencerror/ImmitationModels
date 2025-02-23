@@ -12,7 +12,7 @@ class CurrencySimulator(QWidget):
         self.setWindowTitle("Моделирование курсов валют")
         layout = QVBoxLayout()
         
-        # Поля ввода для начальных значений
+
         self.label1 = QLabel("Initial Price (Currency 1):")
         self.input1 = QDoubleSpinBox()
         self.input1.setRange(0.01, 1000)
@@ -27,15 +27,16 @@ class CurrencySimulator(QWidget):
         layout.addWidget(self.label2)
         layout.addWidget(self.input2)
         
-        # Кнопка старта/остановки симуляции
+
         self.start_button = QPushButton("Start")
         self.start_button.clicked.connect(self.toggle_simulation)
         layout.addWidget(self.start_button)
         
         self.setLayout(layout)
         
-        # Таймер для обновления графика
-        self.timer = QTimer()
+
+        self.timer = QTimer()       
+
         self.timer.timeout.connect(self.update_simulation)
         
         self.k = 0.02  # Коэффициент изменения
@@ -55,7 +56,7 @@ class CurrencySimulator(QWidget):
             
             plt.ion()
             self.fig, self.ax = plt.subplots()
-            self.ax.grid(True, linestyle='--', linewidth=0.5, alpha=0.7)  # Добавляем сетку
+            self.ax.grid(True, linestyle='--', linewidth=0.5, alpha=0.7)  #Сетка
             self.timer.start(1000)  # Обновление раз в секунду
             self.start_button.setText("Stop")
         
@@ -73,7 +74,7 @@ class CurrencySimulator(QWidget):
         self.ax.plot(self.history2, label="Currency 2")
         self.ax.legend()
         self.ax.set_xlabel("Days")
-        self.ax.set_ylabel("Price")
+        self.ax.set_ylabel("Price")#
         self.ax.grid(True, linestyle='--', linewidth=0.5, alpha=0.7)  
         
         
