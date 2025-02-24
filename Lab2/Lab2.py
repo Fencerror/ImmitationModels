@@ -63,7 +63,7 @@ class CurrencySimulator(QWidget):
         self.running = not self.running
         
     def update_simulation(self): 
-        self.price1 *= (1 + self.k * (self.rnd.random() - 0.5))
+        self.price1 *= (1 + self.k * (self.rnd.random() - 0.5))# Здесь формируется цена первой валюты
         self.price2 *= (1 + self.k * (self.rnd.random() - 0.5))
         
         self.history1.append(self.price1)
@@ -72,9 +72,9 @@ class CurrencySimulator(QWidget):
         self.ax.clear()
         self.ax.plot(self.history1, label="Currency 1")
         self.ax.plot(self.history2, label="Currency 2")
-        self.ax.legend()
+        self.ax.legend()#
         self.ax.set_xlabel("Days")
-        self.ax.set_ylabel("Price")#
+        self.ax.set_ylabel("Price")
         self.ax.grid(True, linestyle='--', linewidth=0.5, alpha=0.7)  
         
         
