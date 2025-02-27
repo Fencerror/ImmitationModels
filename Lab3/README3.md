@@ -36,7 +36,8 @@ ng serve
 
 Скриншот приложения:
 
-![image](https://github.com/user-attachments/assets/9b86c492-dba4-481a-b8fa-d63a6af502db)
+![image](https://github.com/user-attachments/assets/92a90175-90d8-45be-96cf-488755005b44)
+
 
 ### Технологии
 - Angular (Standalone компоненты)
