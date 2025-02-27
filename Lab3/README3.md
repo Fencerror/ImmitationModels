@@ -34,6 +34,10 @@ ng serve
 4. Нажмите `Stop`, чтобы остановить симуляцию.
 5. Изменения клеточного автомата в реальном времени.
 
+Скриншот приложения:
+
+![image](https://github.com/user-attachments/assets/9b86c492-dba4-481a-b8fa-d63a6af502db)
+
 ### Технологии
 - Angular (Standalone компоненты)
 - TypeScript
