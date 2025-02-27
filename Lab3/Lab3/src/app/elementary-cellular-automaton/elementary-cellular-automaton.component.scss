@@ -1,0 +1,42 @@
+:host{
+  width: 100dvh;
+  height: 100dvh;
+}
+
+.main-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+}
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin-bottom: 0.3em;
+}
+.controls button{
+  padding: 0.5em;
+  width: 100%;
+  height: 120%;
+}
+.grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+.row {
+  display: flex;
+}
+.row div {
+  width: 1.5em;
+  height: 1.5em;
+  border: 0.5px solid black;
+}
+.row div.active {
+  background-color: limegreen;
+}

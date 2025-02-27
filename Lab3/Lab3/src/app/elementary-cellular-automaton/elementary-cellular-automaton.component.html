@@ -1,0 +1,14 @@
+<div class="main-container">
+  <div class="controls">
+    <label>
+      Rule:
+      <input type="number" [(ngModel)]="rule" min="0" max="255" />
+    </label>
+    <button (click)="toggleSimulation()">{{ running ? 'Stop' : 'Start' }}</button>
+  </div>
+  <div class="grid">
+    <div *ngFor="let row of grid" class="row">
+      <div *ngFor="let cell of row" [class.active]="cell"></div>
+    </div>
+  </div>
+</div>
