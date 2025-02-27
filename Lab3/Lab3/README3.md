@@ -14,7 +14,7 @@
 
 #### Установка зависимостей
 ```
-git clone
+git clone https://github.com/Fencerror/ImmitationModels/tree/master/Lab3/Lab3
 ```
 
 ```sh
