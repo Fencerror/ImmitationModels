@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-elementary-cellular-automaton',
+  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './elementary-cellular-automaton.component.html',
   styleUrl: './elementary-cellular-automaton.component.scss'
@@ -19,8 +20,10 @@ export class ElementaryCellularAutomatonComponent {
   }
 
   initializeGrid() {
-    this.grid = Array.from({ length: 25 }, () => Array(35).fill(0));
-    this.grid[0][Math.floor(this.grid[0].length / 2)] = 1;
+    const rows = 25;
+    const cols = 35;
+    this.grid = Array.from({ length: rows }, () => Array(cols).fill(0));
+    this.grid[0][Math.floor(cols / 2)] = 1;
   }
 
   toggleSimulation() {
@@ -33,8 +36,8 @@ export class ElementaryCellularAutomatonComponent {
   }
 
   updateGrid() {
-    const newRow = Array(this.grid[0].length).fill(0);
     for (let i = 1; i < this.grid.length; i++) {
+      const newRow = Array(this.grid[i].length).fill(0);
       for (let j = 1; j < this.grid[i].length - 1; j++) {
         const left = this.grid[i - 1][j - 1];
         const center = this.grid[i - 1][j];
