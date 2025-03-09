@@ -48,4 +48,8 @@ export class ElementaryCellularAutomatonComponent {
       this.grid[i] = [...newRow];
     }
   }
+
+  toggleCell(row: number, col: number) {
+    this.grid[row][col] = this.grid[row][col] ? 0 : 1;
+  }
 }

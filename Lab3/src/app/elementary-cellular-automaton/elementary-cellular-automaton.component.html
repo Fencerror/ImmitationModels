@@ -8,8 +8,11 @@
   </div>
   
   <div class="grid">
-    <div *ngFor="let row of grid" class="row">
-      <div *ngFor="let cell of row" [class.active]="cell"></div>
+    <div *ngFor="let row of grid; let rowIndex = index" class="row">
+      <div *ngFor="let cell of row; let colIndex = index" 
+           [class.active]="cell" 
+           (click)="toggleCell(rowIndex, colIndex)">
+      </div>
     </div>
   </div>
 </div>
