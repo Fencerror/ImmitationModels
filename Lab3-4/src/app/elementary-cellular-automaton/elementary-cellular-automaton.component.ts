@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-elementary-cellular-automaton',
@@ -14,7 +15,7 @@ export class ElementaryCellularAutomatonComponent {
   running = false;
   grid: number[][] = [];
   private intervalId: any;
-
+  router: Router = inject(Router);
   constructor() {
     this.initializeGrid();
   }
@@ -23,13 +24,13 @@ export class ElementaryCellularAutomatonComponent {
     const rows = 25;
     const cols = 35;
     this.grid = Array.from({ length: rows }, () => Array(cols).fill(0));
-    this.grid[0][Math.floor(cols / 2)] = 1;
+    this.grid[0][Math.floor(cols / 2)] = 1;//Задаём начальную живую клетку.
   }
 
   toggleSimulation() {
     this.running = !this.running;
     if (this.running) {
-      this.intervalId = setInterval(() => this.updateGrid(), 500);
+      this.intervalId = setInterval(() => this.updateGrid(), 500); //Момент времени = 500 миллисекунд;
     } else {
       clearInterval(this.intervalId);
     }
@@ -51,5 +52,12 @@ export class ElementaryCellularAutomatonComponent {
 
   toggleCell(row: number, col: number) {
     this.grid[row][col] = this.grid[row][col] ? 0 : 1;
+  }
+
+  goBack() {
+    this.running = false;
+    clearInterval(this.intervalId);
+    this.initializeGrid();
+    this.router.navigate(['/']);
   }
 }

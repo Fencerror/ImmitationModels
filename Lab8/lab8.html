@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Lab 8</title>
+  <script src="yesOrNo.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header><p class="header-text">Стохастическое моделирование</p></header>
+  <main>
+    <!--Первая часть-->
+    <div class="main-div__8-1">
+      <h3>Скажи "Да" или "Нет":</h6>
+      <label> Ваш вопрос:
+      <input type="text" class="main-div__8-1-input" placeholder="Пойти на пары?">
+      </label>
+      <button type="button" class="main-div__8-1-resultButton" onclick="yesOrNo()">Ответ</button>
+      <div class="yesOrNo-answer-container"></div>
+    </div>
+
+    <!--Вторая часть-->
+    <div class="main-div__8-2">
+      <h3>Магический Шар</h3>
+      <label> Ваш вопрос:
+        <input type="text" class="main-div__8-1-input" placeholder="Я получу пятёрку?">
+        </label>
+        <button type="button" class="main-div__8-1-resultButton" onclick="magicBall()">Спросить Магический Шар</button>
+        <div class="magic-ball-answer-container"></div>
+      </div>
+
+    <!--Третья часть-->
+    <div class="main-div__8-3">
+      <h3>Статистический анализ событий</h3>
+      <div id="eventsContainer">
+        <div class="event-row">
+          <span class="event-name">Вер 1</span>
+          <input type="number" class="event-prob">
+          <button type="button" onclick="removeEvent(this)">✖️</button>
+        </div>
+      </div>
+      <button type="button" class="main-div__8-1-resultButton" onclick="addEvent()">Добавить событие</button>
+      <label>Число попыток (N):
+        <input type="number" class="main-div__8-1-input" placeholder="Введите число" id="trialsInput">
+      </label>
+      <button type="button" class="main-div__8-1-resultButton" id="stat-Analysis-Button" onclick="statAnalysis()">Запустить анализ</button>
+      <div class="stat-analysis-container">
+        <div class="chart-container" id="chartContainer"></div>
+      </div>
+    </div>
+  </main>
+  <footer></footer>
+</body>
+</html>

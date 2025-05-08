@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import {Router} from '@angular/router';
+import { inject } from '@angular/core';
 
 @Component({
   selector: 'app-double-cellular-automaton',
@@ -14,7 +16,7 @@ export class DoubleCellularAutomatonComponent {
   running = false;
   grid: number[][] = [];
   private intervalId: any;
-
+  router: Router = inject(Router);
   constructor() {
     this.initializeGrid();
   }
@@ -53,5 +55,12 @@ export class DoubleCellularAutomatonComponent {
 
   toggleCell(row: number, col: number) {
     this.grid[row][col] = this.grid[row][col] ? 0 : 1;
+  }
+
+  goBack(){
+    this.running = false;
+    clearInterval(this.intervalId);
+    this.initializeGrid();
+    this.router.navigate(['/']);
   }
 }
