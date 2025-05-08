@@ -23,6 +23,7 @@ main {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 50px;
 }
 
 .main-div__8-1 {
@@ -31,6 +32,13 @@ main {
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 100%;
+  max-width: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-div__8-1-yesOrNo{
   max-width: 400px;
 }
 
@@ -86,9 +94,16 @@ main {
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 400px;
+  max-width: 800px;
   margin-top: 20px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-div__8-2-magicBall{
+  max-width: 400px;
 }
 
 .main-div__8-1-resultButton {
@@ -176,12 +191,17 @@ main {
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   width: 100%;
-  max-width: 400px;
+  max-width: 800px;
   margin-top: 20px;
   text-align: center;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.main-div__8-3-StatAnalysis{
+  max-width: 500px;
+}
 
 #eventsContainer {
   margin-bottom: 15px;
@@ -232,6 +252,77 @@ main {
   font-size: 1rem;
 }
 
+#probContainer {
+  margin-bottom: 15px;
+}
+
+.prob-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.prob-row .prob-name {
+  flex: 1;
+}
+
+.prob-row .prob-value {
+  width: 80px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.prob-row .prob-prob {
+  width: 80px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.prob-row button {
+  background-color: transparent;
+  border: none;
+  color: #333;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.main-div__9{
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-div__9-DSV{
+  max-width: 600px;
+}
+
+#main-div__8-1-resultButton__auto{
+  margin-bottom: 20px;
+}
+
+.lab9-results-container {
+  margin-top: 20px;
+}
+
+
+.lab9-results-container h4 {
+  margin-bottom: 5px;
+}
+
+.lab9-results-container ul {
+  margin-top: 5px;
+  padding-left: 20px;
+}
 
 footer{
   background-color: #333;
