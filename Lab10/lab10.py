@@ -2,10 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random
 import math
-from scipy.stats import poisson
 
 def poisson_distribution(mu):
-    """Ручная реализация распределения Пуассона"""
     L = math.exp(-mu)
     k = 0
     p = 1.0
@@ -14,10 +12,14 @@ def poisson_distribution(mu):
         p *= random.random()
     return k - 1
 
-def plot_poisson_curve(mu, max_score, color, label, total_matches):  # изменённая сигнатура
-    """Добавляет кривую Пуассона на график"""
+def poisson_pmf_array(x, mu):
+    
+    return np.array([math.exp(-mu) * (mu ** k) / math.factorial(k) for k in x])
+
+def plot_poisson_curve(mu, max_score, color, label, total_matches):  
+    
     x = np.arange(0, max_score + 1)
-    y = poisson.pmf(x, mu) * total_matches  # Масштабируем к количеству матчей
+    y = poisson_pmf_array(x, mu) * total_matches  
     plt.plot(x, y, 'o--', color=color, label=f'{label} (теория)', linewidth=2, markersize=5)
 
 def main():
