@@ -4,7 +4,6 @@ import random
 import math
 
 def box_muller(n):
-
     results = []
     for _ in range(n // 2):
         u1, u2 = random.random(), random.random()
@@ -14,15 +13,15 @@ def box_muller(n):
     return np.array(results[:n])
 
 def normal_pdf(x, mu=0, sigma=1):
-    """Ручной расчет плотности нормального распределения"""
+    """расчет плотности нормального распределения"""
     return (1/(sigma * math.sqrt(2*math.pi))) * math.exp(-0.5*((x-mu)/sigma)**2)
 
 def chi_squared_test(observed, expected):
-    """Ручной расчет критерия хи-квадрат"""
+    """расчет критерия хи-квадрат"""
     return sum((o-e)**2/e for o,e in zip(observed, expected))
 
 def analyze_sample(sample, bins=10):
-    """Полный анализ выборки"""
+    """анализ выборки"""
     # Основные статистики
     n = len(sample)
     mean = sum(sample)/n
@@ -51,7 +50,7 @@ def analyze_sample(sample, bins=10):
     }
 
 def chi2_cdf(x, df):
-    """Аппроксимация CDF хи-квадрат распределения"""
+    
     # Приближение для больших x
     if x > 400:
         return 1.0
@@ -93,19 +92,19 @@ def main():
         print(f"\nАнализ для выборки n={size}")
         print("="*40)
         
-        # Генерация данных
+        
         sample = box_muller(size)
         
-        # Анализ
+        
         analysis = analyze_sample(sample)
         
-        # Вывод результатов
+        
         print(f"Среднее: {analysis['mean']:.4f}")
         print(f"Стандартное отклонение: {analysis['std']:.4f}")
         print(f"Хи-квадрат: {analysis['chi2']:.4f}")
         print(f"p-value: {analysis['p_value']:.4f}")
         
-        # Визуализация
+        
         plot_results(sample, analysis, size)
 
 if __name__ == "__main__":
