@@ -3,7 +3,7 @@ from PyQt5.QtCore import QTimer
 import numpy as np
 import matplotlib.pyplot as plt
 
-class CurrencySimulator(QWidget):
+class CurrencySimulator(QWidget): # Это вторая лаба, но с добавление вычисления броуновского движения для моделирования курсов валют.
     def __init__(self):
         super().__init__()
         self.initUI()
@@ -12,7 +12,6 @@ class CurrencySimulator(QWidget):
         self.setWindowTitle("Моделирование курсов валют")
         layout = QVBoxLayout()
         
-
         self.label1 = QLabel("Initial Price $:")
         self.input1 = QDoubleSpinBox()
         self.input1.setRange(0.01, 1000)
@@ -41,10 +40,10 @@ class CurrencySimulator(QWidget):
         self.running = False
         self.rng = np.random.default_rng()
 
-        self.drift1 = 0.0005
-        self.vol1 = 0.02
-        self.drift2 = 0.0003
-        self.vol2 = 0.015
+        self.drift1 = -0.001 #Цена растёт на 0.05% в день
+        self.vol1 = 0.02 #Предсказуемость цены. Колебания цены в пределах 2% в день
+        self.drift2 = 0.0003 #Цена растёт на 0.03% в день
+        self.vol2 = 0.015# Предсказуемость цены. Колебания цены в пределах 1.5% в день
 
     def toggle_simulation(self):
         if self.running:
@@ -66,9 +65,9 @@ class CurrencySimulator(QWidget):
         self.running = not self.running
         
     def update_simulation(self):
-        dt = self.dt  
+        dt = self.dt  # Шаг времени в днях
         
-        z1 = self.rng.normal()
+        z1 = self.rng.normal() #Случайное число из нормального распределения
         self.price1 *= np.exp((self.drift1 - 0.5 * self.vol1**2) * dt + self.vol1 * np.sqrt(dt) * z1)
         
         z2 = self.rng.normal()

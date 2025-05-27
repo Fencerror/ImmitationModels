@@ -4,42 +4,43 @@ from matplotlib.animation import FuncAnimation
 from collections import defaultdict
 
 # Параметры модели
-states = ['Ясно', 'Облачно', 'Дождь']
+states = ['Ясно', 'Облачно', 'Пасмурно']
 Q = np.array([[-0.4, 0.3, 0.1],
               [0.4, -0.8, 0.4],
               [0.1, 0.4, -0.5]])
 
 # Функция для генерации следующего состояния
 def next_state(current_state, Q):
-    rates = Q[current_state]
-    # Исключаем диагональный элемент (он отрицательный)
-    rates = np.maximum(rates, 0)
+    rates = Q[current_state] #Строка матрицы содержащая вероятности перехода из текущего состояния, 
+                             #Например для состояния Облачно rates = [0.4, -0.8, 0.4]
+    # Исключаем диагональный элемент 
+    rates = np.maximum(rates, 0) # Через сравненеи каждого элемента с 0 и выбор наибольшего.
     total_rate = sum(rates)
-    if total_rate == 0:
+    if total_rate == 0:     #Если сумма вероятностей перехода из состояние равна 0 то состояние покинуть нельзя.
         return current_state
-    # Нормализуем rates в вероятности
+    # Нормализуем вероятности перехода
     probs = rates / total_rate
     # Генерируем следующее состояние
-    return np.random.choice(len(states), p=probs)
+    return np.random.choice(len(states), p=probs) #Переходим в следующее состояние.
 
-# Функция для вычисления стационарного распределения
 def stationary_distribution(Q):
-    # Решаем систему уравнений πQ = 0 и Σπ = 1
-    n = Q.shape[0]
+    # πQ = 0 и Σπ = 1
+    n = Q.shape[0]  
     # Добавляем условие нормировки
     A = np.vstack([Q.T, np.ones(n)])
     b = np.zeros(n + 1)
     b[-1] = 1
     # Решаем методом наименьших квадратов
-    pi, _, _, _ = np.linalg.lstsq(A, b, rcond=None)
-    return pi
+    pi, _, _, _ = np.linalg.lstsq(A, b, rcond=None) # 3 заглушки нужны потому что метод возвращает ещё другие параметры
+    return pi                                       # Такие как остаточная ошибка, ранг и сингулярные числа. 
 
 # Параметры симуляции
 days = 10
 current_state = 0  # Начинаем с ясной погоды
 history = [current_state]
-counts = defaultdict(int)
-counts[current_state] += 1
+counts = defaultdict(int)   #Количество раз которое встречается каждое состояние системы в формате словаря 
+                            # Формат похож на обекты в js – {0: 3, 1: 4, 2: 4}
+counts[current_state] += 1  #Фиксируем ясную погоду с которой начали
 
 # Запуск симуляции
 for _ in range(days):
@@ -49,7 +50,7 @@ for _ in range(days):
 
 # Вычисляем эмпирические вероятности
 total = sum(counts.values())
-empirical_probs = [counts[i]/total for i in range(len(states))]
+empirical_probs = [counts[i]/total for i in range(len(states))] 
 
 # Вычисляем теоретическое стационарное распределение
 stationary_pi = stationary_distribution(Q)
